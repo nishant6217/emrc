@@ -8,12 +8,21 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         return;
       }
       return { ...state, cartItems: [...state.cartItems, item] };
-    
-    case actionType.REMOVE_FROM_CART :
-      return {...state , cartItems : state.cartItems.filter(product => product.id !== action.payload)}
+
+    case actionType.ADD_TO_CARTS:
+      const items = action.payload;
+
+      return { ...state, cartItems: [...state.cartItems, ...items] };
+
+    case actionType.REMOVE_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (product) => product.id !== action.payload
+        ),
+      };
 
     default:
       return state;
   }
 };
-
