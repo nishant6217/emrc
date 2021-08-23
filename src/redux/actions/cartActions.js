@@ -30,6 +30,13 @@ export const fetch = (data) => async (dispatch) => {
 
 export const removeFromCart = (id) => async (dispatch) => {
   try {
+    let item = localStorage.getItem("carts");
+    item = JSON.parse(item);
+    console.log("itemitemitem", item);
+    let reqItem = item.filter((a) => a.id != ids);
+    console.log("reqItemreqItem", reqItem);
+    localStorage.setItem("carts", JSON.stringify(reqItem));
+
     dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: id });
   } catch (error) {
     console.log(error.messgae, " error");
