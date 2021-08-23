@@ -28,7 +28,7 @@ export const fetch = (data) => async (dispatch) => {
   }
 };
 
-export const removeFromCart = (id) => async (dispatch) => {
+export const removeFromCart = (ids) => async (dispatch) => {
   try {
     let item = localStorage.getItem("carts");
     item = JSON.parse(item);
@@ -37,7 +37,7 @@ export const removeFromCart = (id) => async (dispatch) => {
     console.log("reqItemreqItem", reqItem);
     localStorage.setItem("carts", JSON.stringify(reqItem));
 
-    dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: id });
+    dispatch({ type: actionTypes.REMOVE_FROM_CART, payload: ids });
   } catch (error) {
     console.log(error.messgae, " error");
   }
